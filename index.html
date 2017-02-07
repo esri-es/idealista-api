@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Petición a la API de Idealista</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+
+    /*
+      Para saber más sobre los parámetros leer la documentación de la API:
+      https://goo.gl/A0UqEJ
+    */
+    var data = {
+      "action": "json",
+      "apikey": "0lVOkSbmEM5iIo7pAPFprxFUUuJUCZXU",
+      "country": "es",
+      "maxItems": 50,
+      "numPage": 1,
+      "distance": 1000,
+      "center": "40.429,-3.697",
+      "noSmokers": true,
+      "sex": "X",
+      "operation": "A",
+      "pictures": true,
+      "propertyType": "bedrooms",
+      "k": "4ebe5ef1c9ba6f28c15cc26d755016b9",
+      "t": "apigee"
+    };
+
+    // Se ha utilizado el "resource-proxy" de Esri  para evitar el problema
+    // de CORS: https://github.com/esri/resource-proxy
+    var proxy = "proxy/proxy.ashx?";
+
+    var endpoint = "https://www.idealista.com/labs/api/2/search?";
+    $.getJSON(proxy + endpoint, data, function(response){
+      console.log(response);
+    });
+
+  </script>
+</head>
+
+<body>
+  <h1>Petición a la API de Idealista</h1>
+  <p>Abre la consola para ver la respuesta de la API</p>
+</body>
+</html>
